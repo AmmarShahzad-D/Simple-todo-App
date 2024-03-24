@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.cute-font-regular {
+  font-family: "Cute Font", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Todo {
+  font-family: "Cute Font", sans-serif;
+  /* font-size: 80px; */
+  margin: 10px 0px;
+}
+
+.text {
+  font-family: "Cute Font", sans-serif;
+  font-size: 40px;
+}
+
+.dateInput {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-inputContianer {
+  max-width: 30%;
+}
+
+.todo-width {
+  max-width: 300px;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 10px;
+}
