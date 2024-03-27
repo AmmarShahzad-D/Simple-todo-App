@@ -27,10 +27,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.todo-inputContianer {
-  max-width: 30%;
-}
-
 .todo-width {
   max-width: 300px;
   border-radius: 20px;

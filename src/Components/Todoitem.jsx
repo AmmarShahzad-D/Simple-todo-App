@@ -7,7 +7,11 @@ const Todoitem = ({ todo, onDelete }) => {
           <div className="col-sm-4 my-2  p-2">{todo.name} </div>
           <div className="ccol-sm-4 my-2  p-2">{todo.date}</div>
           <div className="col-sm-4 my-2 p-2">
-            <button type="button" className="btn shadow text-danger fw-semibold" onClick={onDelete}>
+            <button
+              type="button"
+              className="btn shadow text-danger fw-semibold"
+              onClick={onDelete}
+            >
               Remove
             </button>
           </div>

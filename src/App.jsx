@@ -2,29 +2,29 @@ import AddTodo from "./Components/AddTodo";
 import TodoName from "./Components/TodoName";
 import TodoItems from "./Components/TodoItems";
 import "./App.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function App() {
-  const [todoInput, setTodoInput] = useState("");
-  const [dateInput, setDateInput] = useState("");
+  const todoNameRef = useRef();
+  const todoDateRef = useRef();
   const [todos, setTodos] = useState([]);
 
-  const handleTodoChange = (event) => {
-    console.log(event.target.value);
-    setTodoInput(event.target.value);
-  };
-
-  const handleDateChange = (event) => {
-    console.log(event.target.value);
-    setDateInput(event.target.value);
-  };
-
-  const handleTodo = () => {
-    const newTodo = { name: todoInput, date: dateInput };
-    setTodos([...todos, newTodo]);
-    console.log("Adding todo:", todoInput, "Due date:", dateInput);
-    handleTodoChange({ target: { value: "" } });
-    handleDateChange({ target: { value: "" } });
+  const handleTodo = (event) => {
+    console.log(event);
+    event.preventDefault();
+    setTodos((currentValue) => [...currentValue, newTodo]);
+    console.log(
+      "Adding todo:",
+      todoNameRef.current.value,
+      "Due date:",
+      todoDateRef.current.value
+    );
+    const newTodo = {
+      name: todoNameRef.current.value,
+      date: todoDateRef.current.value,
+    };
+    todoNameRef.current.value = "";
+    todoDateRef.current.value = "";
   };
 
   const deleteTodo = (index) => {
@@ -37,11 +37,9 @@ function App() {
     <>
       <TodoName />
       <AddTodo
-        todoInput={todoInput}
-        todoChange={handleTodoChange}
-        dateInput={dateInput}
-        dateChange={handleDateChange}
         handleTodo={handleTodo}
+        todoNameRef={todoNameRef}
+        todoDateRef={todoDateRef}
       />
       <TodoItems todos={todos} onDeleteTodo={deleteTodo} />
     </>
