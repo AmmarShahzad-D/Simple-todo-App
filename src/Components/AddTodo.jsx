@@ -1,6 +1,12 @@
 import "../App.css";
 import PropTypes from "prop-types";
-const AddTodo = ({ handleTodo, todoNameRef, todoDateRef }) => {
+import { todoItemContext } from "../store/todoItemStore";
+import { useContext } from "react";
+const AddTodo = () => {
+  const { handleTodo, todoDateRef, todoNameRef } = useContext(todoItemContext);
+  // const todoNameContext = AddTodo.;
+  // const todoDateContext = AddTodo.;
+  // const handleTodo = AddTodo.
 
   return (
     <div>

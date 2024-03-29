@@ -1,7 +1,10 @@
-import PropTypes from "prop-types";
 import Todoitem from "./Todoitem";
 import "../App.css";
-const TodoItems = ({ todos, onDeleteTodo }) => {
+import { todoItemContext } from "../store/todoItemStore";
+import { useContext } from "react";
+
+const TodoItems = () => {
+  const { todos, deleteTodo } = useContext(todoItemContext);
   return (
     <>
       {todos.length > 0 ? (
@@ -10,7 +13,7 @@ const TodoItems = ({ todos, onDeleteTodo }) => {
             <Todoitem
               todo={todo}
               key={index}
-              onDelete={() => onDeleteTodo(index)}
+              onDelete={() => deleteTodo(index)}
             />
           );
         })
@@ -19,16 +22,6 @@ const TodoItems = ({ todos, onDeleteTodo }) => {
       )}
     </>
   );
-};
-
-TodoItems.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      date: PropTypes.string,
-    })
-  ).isRequired,
-  onDeleteTodo: PropTypes.func,
 };
 
 export default TodoItems;

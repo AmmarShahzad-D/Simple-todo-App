@@ -1,6 +1,7 @@
 import AddTodo from "./Components/AddTodo";
 import TodoName from "./Components/TodoName";
 import TodoItems from "./Components/TodoItems";
+import { todoItemContext } from "./store/todoItemStore";
 import "./App.css";
 import { useState, useRef } from "react";
 
@@ -8,21 +9,16 @@ function App() {
   const todoNameRef = useRef();
   const todoDateRef = useRef();
   const [todos, setTodos] = useState([]);
+  // const [state , displatch ] = useReducer([ reducer  , initialState ]);
 
   const handleTodo = (event) => {
     console.log(event);
     event.preventDefault();
-    setTodos((currentValue) => [...currentValue, newTodo]);
-    console.log(
-      "Adding todo:",
-      todoNameRef.current.value,
-      "Due date:",
-      todoDateRef.current.value
-    );
     const newTodo = {
       name: todoNameRef.current.value,
       date: todoDateRef.current.value,
     };
+    setTodos((currentValue) => [...currentValue, newTodo]);
     todoNameRef.current.value = "";
     todoDateRef.current.value = "";
   };
@@ -34,15 +30,19 @@ function App() {
   };
 
   return (
-    <>
+    <todoItemContext.Provider
+      value={{
+        todos,
+        handleTodo,
+        todoNameRef,
+        todoDateRef,
+        deleteTodo,
+      }}
+    >
       <TodoName />
-      <AddTodo
-        handleTodo={handleTodo}
-        todoNameRef={todoNameRef}
-        todoDateRef={todoDateRef}
-      />
-      <TodoItems todos={todos} onDeleteTodo={deleteTodo} />
-    </>
+      <AddTodo />
+      <TodoItems />
+    </todoItemContext.Provider>
   );
 }
 
